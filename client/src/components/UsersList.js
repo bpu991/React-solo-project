@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { apiUrl } from '../config';
 import User from './User';
 
-function UsersList (props) {
+function UserList (props) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -14,7 +14,6 @@ function UsersList (props) {
         }
         fetchData();
     }, []);
-
     const userComponents = users.map((user) => <User key={user.id} user={user} />)
     return (
         <>
@@ -24,4 +23,4 @@ function UsersList (props) {
         );
 }
 
-export default UsersList;
+export default UserList;
