@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const {
     jwtConfig: { secret, expiresIn },
-} = require('../../config');
+} = require('../../config/index');
 const { User } = require('../../db/models');
 
 class AuthenticationError extends Error {
@@ -31,4 +31,10 @@ function restoreUser(req, _res, next) {
         const err = new AuthenticationError();
         return next(err);
     }
+}
+
+module.exports = {
+    generateToken,
+    restoreUser,
+    AuthenticationError
 }

@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import UserList from './components/UsersList';
-import configureStore from './store/configureStore';
+
 import Pages from './pages/Pages';
+import { setUser } from './store/auth';
+import { useSelector, useDispatch } from 'react-redux';
 
-const store = configureStore();
 
-if (process.env.NODE_ENV !== 'production') {
-    window.store = store;
-}
 function App() {
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const loadUser = async () => {
+            const res = await fetch('/api/session');
 
+            if(res.ok) {
+                res.data = await res.json();
+                dispatch(setUser(res.data.user));
+            }
+            setLoading(false);
+        }
+        loadUser()
+    }, [dispatch]);
   return (
     <BrowserRouter>
-        <Provider store={store}>
+        
             <nav>
                 <ul>
-                    <li><NavLink to="/" activeClass="active">Home</NavLink></li>
-                    <li><NavLink to="/users" activeClass="active">Users</NavLink></li>
-                    <li><NavLink to="/login" activeClass="active">Login</NavLink></li>
+                    <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
+                    <li><NavLink to="/users" activeClassName="active">Users</NavLink></li>
+                    <li><NavLink to="/login" activeClassName="active">Login</NavLink></li>
                 </ul>
             </nav>
             <Switch>
@@ -31,11 +42,14 @@ function App() {
                       <Pages />
                 </Route>
 
+                  <Route path='/signup'>
+                      <Pages />
+                  </Route>
+
                 <Route path="/">
                     <h1>My Home Page</h1>
                 </Route>
             </Switch>
-        </Provider>
     </BrowserRouter>
   );
 }

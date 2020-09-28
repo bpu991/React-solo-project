@@ -1,12 +1,11 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-
 const { User } = require("../../db/models");
 const { handleValidationErrors } = require('../util/validation');
-const { requireUser, generateToken, AuthenticationError } = require('../util/auth');
+const { restoreUser, generateToken, AuthenticationError } = require('../util/auth');
 const { jwtConfig: {expiresIn }} = require('../../config');
-
+const bcrypt = require('bcryptjs'); 
 const router = express.Router();
 
 const validateLogin = [
@@ -14,7 +13,8 @@ const validateLogin = [
     check('password').exists(),
 ];
 
-router.get('/', requireUser, asyncHandler(async (req, res, next) => {
+
+router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     if(req.user) {
         return res.json({
             user: req.user
@@ -23,7 +23,46 @@ router.get('/', requireUser, asyncHandler(async (req, res, next) => {
     next(new AuthenticationError());
 }))
 
-router.put('/', validateLogin, handleValidationErrors, asyncHandler(async (req, res, next) => {
+router.post('/signup', asyncHandler(async (req, res, next) => {
+    console.log('asdf')
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     console.log(errors);
+    //     return next({ status: 422, errors: errors.array() });
+    // }
+
+    const {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password
+    } = req.body;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+ 
+    const user = await User.create({
+        firstName,
+        lastName,
+        username: userName,
+        email,
+        hashedPassword
+    });
+    console.log(user)
+ 
+    const { jti, token } = generateToken(user);
+
+    user.tokenId = jti;
+
+    await user.save();
+
+    res.cookie("token", token);
+   
+    res.json({ token, user: user.toSafeObject() });
+}));
+
+router.put('/login', asyncHandler(async (req, res, next) => {
+    console.log('here');
     const user = await User.login(req.body);
     if (user) {
         const token = await generateToken(user);
