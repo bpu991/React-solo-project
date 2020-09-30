@@ -1,37 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import UserList from './components/UsersList';
-
+import LandingPage from './components/LandingPage';
 import Pages from './pages/Pages';
-import { setUser } from './store/auth';
-import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import ExplorePage from './components/ExplorePage';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/Signup';
 
+function App(props) {
 
-function App() {
-    const [loading, setLoading] = useState(true);
-    const dispatch = useDispatch()
-    useEffect(() => {
-        const loadUser = async () => {
-            const res = await fetch('/api/session');
-
-            if(res.ok) {
-                res.data = await res.json();
-                dispatch(setUser(res.data.user));
-            }
-            setLoading(false);
-        }
-        loadUser()
-    }, [dispatch]);
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route {...rest} render={(props) => (
+            rest.needLogin
+                ? <Redirect to='/home' />
+                : <Component {...props} />
+        )} />
+    )
   return (
     <BrowserRouter>
         
             <nav>
-                <ul>
+                {/* <ul>
                     <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
                     <li><NavLink to="/users" activeClassName="active">Users</NavLink></li>
                     <li><NavLink to="/login" activeClassName="active">Login</NavLink></li>
-                </ul>
+                </ul> */}
             </nav>
             <Switch>
                 <Route path="/users">
@@ -39,19 +34,29 @@ function App() {
                 </Route>
 
                 <Route path='/login'>
-                      <Pages />
+                      <LoginPage />
                 </Route>
 
                   <Route path='/signup'>
-                      <Pages />
+                      <SignUpPage />
                   </Route>
-
-                <Route path="/">
-                    <h1>My Home Page</h1>
+                <Route path='/home'>
+                    <LandingPage />
                 </Route>
+                <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} />
+                    
+                
             </Switch>
     </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        currentUserId: state.auth.id,
+        needLogin: !state.auth.id,
+    };
+}
+
+
+export default connect(mapStateToProps)(App);

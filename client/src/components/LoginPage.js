@@ -6,15 +6,16 @@ import { Redirect } from 'react-router-dom';
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const isLoggedIn = useSelector(state => !!state.auth.id)
+    const currentUserId = useSelector(state => state.auth.id)
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-       dispatch(login(username, password));
+       e.preventDefault();
+       dispatch(login(username, password));    
     };
-    console.log(isLoggedIn)
-    if(isLoggedIn) return <Redirect to='/'/>
+    
+    
+    if (currentUserId) return <Redirect to='/explore' />
 
     return (
         <form>
@@ -121,6 +122,6 @@ export default LoginPage;
 //         if (res.ok) {
 //             dispatch(setUser(res.data));
 //         }
-//         // return res;
+//         // return res; 
 //     };
 // };

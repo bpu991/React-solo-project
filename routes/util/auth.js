@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const uuid = require('uuid').v4;
 
 const {
     jwtConfig: { secret, expiresIn },
@@ -17,12 +18,22 @@ class AuthenticationError extends Error {
         this.status = 401;
     }
 }
+// function generateToken(user) {
+//     const data = user.toSafeObject();
+//     console.log(data);
+//     return jwt.sign({ data }, secret, {
+//         expiresIn: Number.parseInt(expiresIn)
+//     });
+// }
+
 function generateToken(user) {
     const data = user.toSafeObject();
+    const jwtid = uuid();
 
-    return jwt.sign({ data }, secret, {
-        expiresIn: Number.parseInt(expiresIn)
-    });
+    return {
+        jti: jwtid,
+        token: jwt.sign({ data }, secret, { expiresIn: Number.parseInt(expiresIn), jwtid })
+    };
 }
 
 function restoreUser(req, _res, next) {

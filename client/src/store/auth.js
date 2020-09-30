@@ -12,7 +12,6 @@ export const setUser = (user) => {
 };
 
 export const login = (username, password) => async (dispatch) => {
-    console.log('h')
     const csrfToken = Cookies.get("XSRF-TOKEN");
     const res = await fetch("/api/session/login", {
         method: "put",
@@ -57,7 +56,29 @@ export const signup = (firstName, lastName, userName, email, password) => async 
         dispatch(setUser(user));
     }
 }
-export default function authReducer(state={}, action ) {
+
+function loadUser() {
+    console.log('line 62')
+    const authToken = Cookies.get("token");
+    console.log(authToken)
+    if(authToken) {
+        try{
+            const payload = authToken.split(".")[1];
+            console.log(payload);
+            const decodedPayload = atob(payload);
+            const payloadObj = JSON.parse(decodedPayload);
+            console.log(payloadObj)
+            const { data } = payloadObj;
+            return data;
+        } catch (e) {
+            console.log('removing token')
+            Cookies.remove("token")
+        }
+    }
+    return {}
+}
+
+export default function authReducer(state=loadUser(), action ) {
     switch(action.type) {
         case SET_USER:
             return action.user;

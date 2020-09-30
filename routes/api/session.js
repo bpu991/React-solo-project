@@ -13,6 +13,16 @@ const validateLogin = [
     check('password').exists(),
 ];
 
+// const email =
+//     check('email')
+//         .isEmail()
+//         .withMessage('Please provide a valid email address')
+//         .normalizeEmail();
+
+// const password =
+//     check('password')
+//         .not().isEmpty()
+//         .withMessage('Please provide a password');
 
 router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     if(req.user) {
@@ -55,7 +65,7 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
     user.tokenId = jti;
 
     await user.save();
-
+    console.log(token)
     res.cookie("token", token);
    
     res.json({ token, user: user.toSafeObject() });
@@ -65,12 +75,9 @@ router.put('/login', asyncHandler(async (req, res, next) => {
     console.log('here');
     const user = await User.login(req.body);
     if (user) {
-        const token = await generateToken(user);
-        res.cookie('token', token, {
-            maxAge: expiresIn * 1000,
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-        });
+        const token = generateToken(user);
+        
+        res.cookie('token', token)
         return res.json({
             user,
         })
@@ -78,7 +85,12 @@ router.put('/login', asyncHandler(async (req, res, next) => {
     const err = new Error('Invalid Credentials');
     err.status = 422;
     return next(err);
-    })
-)  
+    
+    }) 
+)
+
+
 
 module.exports = router
+
+
