@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../store/auth';
-
+import { Redirect } from 'react-router-dom';
 
 
 const SignUpPage = () => {
@@ -11,6 +11,7 @@ const SignUpPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const currentUserId = useSelector(state => state.auth.id)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -18,6 +19,7 @@ const SignUpPage = () => {
         dispatch(signup(firstName, lastName, userName, email, password, confirmPassword));
     };
 
+    if (currentUserId) return <Redirect to='/explore' />
     return (
         <form onSubmit={handleSubmit}>
             <label>
