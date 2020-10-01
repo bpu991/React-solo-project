@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
 const ExplorePage = () => {
-    
+
     return(
-        <h1>
-            Explore page
-        </h1>
+        <main>
+            <h1>
+                Explore page
+            </h1>
+        </main>
     )
 }
 

@@ -8,9 +8,10 @@ import { Redirect } from 'react-router-dom';
 import ExplorePage from './components/ExplorePage';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/Signup';
+import UserProfile from './components/UserProfile';
+import ImageUpload from './components/ImageUpload';
 
 function App(props) {
-
     const PrivateRoute = ({ component: Component, ...rest }) => (
         <Route {...rest} render={(props) => (
             rest.needLogin
@@ -29,9 +30,9 @@ function App(props) {
                 </ul> */}
             </nav>
             <Switch>
-                <Route path="/users">
+                {/* <Route path="/users">
                     <UserList />
-                </Route>
+                </Route> */}
 
                 <Route path='/login'>
                       <LoginPage />
@@ -43,7 +44,9 @@ function App(props) {
                 <Route path='/home'>
                     <LandingPage />
                 </Route>
-                <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} />
+              <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} />
+              <PrivateRoute needLogin={props.needLogin} path="/users/:userId" component={UserProfile} />
+              <PrivateRoute needLogin={props.needLogin} path="/upload" component={ImageUpload} />
                     
                 
             </Switch>

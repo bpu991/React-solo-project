@@ -48,7 +48,7 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
         email,
         password
     } = req.body;
-
+    console.log(firstName, lastName);
     const hashedPassword = await bcrypt.hash(password, 10);
  
     const user = await User.create({
@@ -76,7 +76,6 @@ router.put('/login', asyncHandler(async (req, res, next) => {
     const user = await User.login(req.body);
     if (user) {
         const token = generateToken(user);
-        
         res.cookie('token', token)
         return res.json({
             user,

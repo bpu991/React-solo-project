@@ -5,6 +5,14 @@ const { default: User } = require("../../client/src/components/User");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    firstName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
     email: {
       allowNull: false,
       type: DataTypes.STRING,
@@ -33,18 +41,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   User.associate = function(models) {
+    User.hasMany(models.Photo, { foreignKey: 'userId' });
   };
-
- 
-
 
   User.prototype.toSafeObject = function () {
     const {
       id,
-      username
+      username,
+      email
     } = this;
 
-    return { id, username};
+    return { id, username, email};
   }
 
   User.prototype.validatePassword = function(password) {
