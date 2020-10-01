@@ -10,4 +10,10 @@ router.get('/', asyncHandler(async function (req, res, next) {
     res.json({ users });
 }));
 
+router.get('/:userId', asyncHandler(async(req, res) => {
+    const { userId } = req.params;
+    const user = await User.findByPk(userId);
+    res.json(user.toSafeObject());
+}))
+
 module.exports = router;

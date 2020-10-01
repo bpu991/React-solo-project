@@ -1,0 +1,60 @@
+import React, { useState } from 'react';
+import { upload } from '../store/photos';
+import { useSelector, useDispatch } from 'react-redux'
+const config = {
+    bucketName: 'img-bucket-shuttr-react-app',
+    // dirName: 'photos', /* optional */
+    region: 'us-east-1',
+    accessKeyId: process.env.ACCESS_ID,
+    secretAccessKey: process.env.SECRET_ID,
+}
+
+const ImageUpload = () => {
+    const [formDatas, setFormData] = useState('');
+    const userId = useSelector(state => state.auth.id)
+    const userPhotos = useSelector(state => state.photoReducer);
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData() 
+        formData.append('demo_file', e.target.files[0])
+        formData.append('userId', userId)
+        dispatch(upload(formData));
+    }
+
+    // const upload = async (e) => {
+        
+    //     // const body = {userId, formData};
+    //     console.log(e.target.files[0])
+    //     const csrfToken = Cookies.get("XSRF-TOKEN");
+    //     const res = await fetch('/api/aws/post_file', {
+    //         method: 'POST',
+    //         headers: {
+    //             // 'Content-Type': 'multipart/form-data',
+    //             "CSRF-TOKEN": csrfToken
+    //         },
+    //         body: formData
+    //     });
+    //     if(res.ok) {
+    //         const { photos } = await res.json();
+    //         dispatch(setPhoto(photos))
+    //     }
+    // }
+    if(!userPhotos) {
+        return null;
+    }
+    const arrays = [1, 2, 3, 4, 5, 6, 7]
+    return (
+        <div>
+            <h3>AWS upload</h3>
+            <input
+            type='file'
+            onChange={handleSubmit}
+            />
+            <div>{arrays.map(photo => (<div><img src={photo.url}/>{console.log(photo.url)}</div>))}</div>
+        </div>
+    )
+}
+
+export default ImageUpload;
