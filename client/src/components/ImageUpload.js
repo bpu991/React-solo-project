@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { upload } from '../store/photos';
 import { useSelector, useDispatch } from 'react-redux'
+// import dji from './DJI_0005.jpg';
+import '../index.css'
 const config = {
     bucketName: 'img-bucket-shuttr-react-app',
     // dirName: 'photos', /* optional */
@@ -44,7 +46,7 @@ const ImageUpload = () => {
     if(!userPhotos) {
         return null;
     }
-    const arrays = [1, 2, 3, 4, 5, 6, 7]
+    const array = [1, 2, 3, 4, 5, 6, 7]
     return (
         <div>
             <h3>AWS upload</h3>
@@ -52,7 +54,7 @@ const ImageUpload = () => {
             type='file'
             onChange={handleSubmit}
             />
-            <div>{arrays.map(photo => (<div><img src={photo.url}/>{console.log(photo.url)}</div>))}</div>
+            {/* <div className='gallery-div' >{array.map(photo => (<div><img className='gallery-photo' alt='dji' src={dji}/>{console.log(photo.url)}</div>))}</div> */}
         </div>
     )
 }

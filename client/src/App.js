@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { CssBaseline } from '@material-ui/core/CssBaseline';
 import UserList from './components/UsersList';
 import LandingPage from './components/LandingPage';
 import Pages from './pages/Pages';

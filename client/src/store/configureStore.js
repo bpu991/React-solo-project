@@ -2,9 +2,13 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import photoReducer from './photos'
 import auth from './auth'
+import profileReducer from './profile'
+import exploreReducer from './explore'
 const rootReducer = combineReducers({
     auth,
-    photoReducer
+    photoReducer,
+    profileReducer,
+    exploreReducer
 });
 
 let storeEnhancer;
