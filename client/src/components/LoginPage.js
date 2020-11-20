@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../store/auth';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-
+import '../log-in.css';
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,26 +18,41 @@ const LoginPage = () => {
     if (currentUserId) return <Redirect to='/explore' />
 
     return (
-        <form>
-            <label>
-                Username
-                <input 
-                    type='text' 
-                    name='username' 
-                    value={username}
-                    onChange={(e)=> setUsername(e.target.value)}
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    type='password'
-                    name='password'
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </label>
-            <button onClick={handleSubmit} type='submit'>Log in</button>
+        // <form className='login-form'>
+        //     <label>
+        //         Username
+        //         <input 
+        //             type='text' 
+        //             name='username' 
+        //             value={username}
+        //             onChange={(e)=> setUsername(e.target.value)}
+        //         />
+        //     </label>
+        //     <label>
+        //         Password
+        //         <input
+        //             type='password'
+        //             name='password'
+        //             value={password} 
+        //             onChange={(e) => setPassword(e.target.value)}
+        //         />
+        //     </label>
+        //     <button onClick={handleSubmit} type='submit'>Log in</button>
+        // </form>
+        <form className="login-form" action="javascript:void(0);">
+            
+            <div className='login-card'>
+                <h1>Login</h1>
+                <div className="form-input-material">
+                    <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} id="username" placeholder=" " autocomplete="off" className="form-control-material" required />
+                    <label for="username">Username</label>
+                </div>
+                <div className="form-input-material">
+                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder=" " autocomplete="off" className="form-control-material" required />
+                    <label for="password">Password</label>
+                </div>
+                <button onClick={handleSubmit} type="submit" className="btn-login btn-login-primary btn-login-ghost">Login</button>
+            </div>
         </form>
     )
 }
@@ -91,7 +106,7 @@ export default LoginPage;
 //         return <Redirect to="/" />;
 //     }
 //     return (
-//         <main className="centered middled">
+//         <main classNameName="centered middled">
 //             <form onSubmit={handleSubmit}>
 //                 <input type="text"
 //                     placeholder="Email"

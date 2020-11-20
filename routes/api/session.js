@@ -72,7 +72,6 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
 }));
 
 router.put('/login', asyncHandler(async (req, res, next) => {
-    console.log('here');
     const user = await User.login(req.body);
     if (user) {
         const token = generateToken(user);

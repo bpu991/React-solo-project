@@ -38,7 +38,7 @@ router.post('/post_file', upload.single('demo_file'), asyncHandler(async (req, r
     uploadFile(req.file.path, req.file.filename, res);
     // console.log(`https://img-bucket-shuttr-react-app.s3.amazonaws.com/images/${req.file.filename}`)
     const photo = await Photo.create({ 
-        url: `https://img-bucket-shuttr-react-app.s3.amazonaws.com/${req.file.filename}`,
+        url: `https://img-bucket-shuttr-react-app.s3.amazonaws.com/images/${req.file.filename}`,
         userId
     })
     // await photo.save()
@@ -57,14 +57,15 @@ function uploadFile(source, targetName, res) {
     fs.readFile(source, function (err, filedata) {
         if (!err) {
             const putParams = {
-                Bucket: 'img-bucket-shuttr-react-app',
+                Bucket: 'img-bucket-shuttr-react-app/images',
                 Key: targetName,
-                Body: filedata
+                Body: filedata,
+                ACL: 'public-read',
             };
             s3.putObject(putParams, function (err, data) {
                 if (err) {
                     console.log('Could nor upload the file. Error :', err);
-                    return res.send({ success: false });
+                    return
                 }
                 else {
                     // fs.unlink(source);// Deleting the file from uploads folder(Optional).Do Whatever you prefer.
@@ -83,7 +84,7 @@ function uploadFile(source, targetName, res) {
 function retrieveFile(filename, res) {
 
     const getParams = {
-        Bucket: 'img-bucket-shuttr-react-app',
+        Bucket: 'img-bucket-shuttr-react-app/images',
         Key: filename
     };
 
