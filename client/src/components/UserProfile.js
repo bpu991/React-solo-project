@@ -14,7 +14,7 @@ const UserProfile = () => {
         console.log(profilePage);
         dispatch(profilePage(params.userId))
     }, [dispatch])
-
+    
     console.log('userProfileRender')
     // if(!profile) {
     //     return null;

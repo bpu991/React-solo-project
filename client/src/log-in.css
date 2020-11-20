@@ -5,11 +5,11 @@ font-family: 'Open Sans', sans-serif;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #eceffc;
+  /* background: #eceffc;
   background-image: url('./photos/umbrella.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .btn-login {

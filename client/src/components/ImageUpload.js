@@ -12,7 +12,7 @@ const config = {
 }
 
 const ImageUpload = () => {
-    const [formDatas, setFormData] = useState('');
+    // const [formDatas, setFormData] = useState('');
     const userId = useSelector(state => state.auth.id)
     const userPhotos = useSelector(state => state.photoReducer);
     const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const ImageUpload = () => {
             type='file'
             onChange={handleSubmit}
             />
+            <button onClick={(e) => { window.location.href = '/explore' }}>Submit</button>
             {/* <div className='gallery-div' >{array.map(photo => (<div><img className='gallery-photo' alt='dji' src={dji}/>{console.log(photo.url)}</div>))}</div> */}
         </div>
     )

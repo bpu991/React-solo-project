@@ -77,7 +77,7 @@ function loadUser() {
     return {}
 }
 
-export default function authReducer(state=loadUser(), action ) {
+export default function authReducer(state=loadUser(), action) {
     switch(action.type) {
         case SET_USER:
             return action.user;
