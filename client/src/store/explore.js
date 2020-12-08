@@ -11,7 +11,7 @@ export const setExplore = (explore) => {
 
 export const explorePage = () => async (dispatch) => {
     // const csrfToken = Cookies.get("XSRF-TOKEN");
-    const res = await fetch(`/api/explore`);
+    const res = await fetch(`/api/photos`);
     if (res.ok) {
         
         const { photos } = await res.json();

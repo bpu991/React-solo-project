@@ -2,8 +2,32 @@ import React, { useState } from 'react';
 import { login } from '../store/auth';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import '../log-in.css';
+import '../css-styles/log-in.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import TextField from "@material-ui/core/TextField";
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import loginPhoto from "../photos/login-2.jpg"
+import film from '../photos/film-icon.png';
+import camera from '../photos/camera-icon.png';
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 400,
+        height: 500,
+    },
+    media: {
+        height: 200,
+    },
+});
+
 const LoginPage = () => {
+    const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const currentUserId = useSelector(state => state.auth.id)
@@ -18,125 +42,107 @@ const LoginPage = () => {
     if (currentUserId) return <Redirect to='/explore' />
 
     return (
-        // <form className='login-form'>
-        //     <label>
-        //         Username
-        //         <input 
-        //             type='text' 
-        //             name='username' 
-        //             value={username}
-        //             onChange={(e)=> setUsername(e.target.value)}
-        //         />
-        //     </label>
-        //     <label>
-        //         Password
-        //         <input
-        //             type='password'
-        //             name='password'
-        //             value={password} 
-        //             onChange={(e) => setPassword(e.target.value)}
-        //         />
-        //     </label>
-        //     <button onClick={handleSubmit} type='submit'>Log in</button>
-        // </form>
-        <form className="login-form" action="javascript:void(0);">
-            
-            <div className='login-card'>
-                <h1>Login</h1>
-                <div className="form-input-material">
-                    <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} id="username" placeholder=" " autocomplete="off" className="form-control-material" required />
-                    <label for="username">Username</label>
-                </div>
-                <div className="form-input-material">
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder=" " autocomplete="off" className="form-control-material" required />
-                    <label for="password">Password</label>
-                </div>
-                <button onClick={handleSubmit} type="submit" className="btn-login btn-login-primary btn-login-ghost">Login</button>
+        <div className='login-page-container'>
+            <div className='login-page-col-1'>
+
             </div>
-        </form>
+            <div className='login-page-col-2'>
+                
+                <div className='col-2-row-1'>
+                    {/* <img src={film} /> */}
+                    <img src={camera} />
+                </div>
+                <div className='col-2-row-2'>
+                    {/* <Card className={classes.root}>
+                        <CardMedia
+                            className={classes.media}
+                            image={loginPhoto}
+                            title="Contemplative Reptile"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Login
+                            </Typography>
+                            <form onSubmit={handleSubmit}>
+                                <TextField
+                                    // variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    id='email'
+                                    label='Username'
+                                    name='email'
+                                    autoComplete='username'
+                                    autoFocus
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}></TextField>
+                                <TextField
+                                    // variant='outlined'
+                                    margin='normal'
+                                    required
+                                    fullWidth
+                                    name='password'
+                                    label='Password'
+                                    type='password'
+                                    id='password'
+                                    autoComplete='current-password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <div className='button-section'>
+                                    <Button
+                                        className={classes.button}
+                                        type='submit'
+                                        fullWidth
+                                        variant='contained'
+                                        color='primary'
+                                        size='large'>
+                                        Sign In
+                                    </Button>
+
+                                </div>
+                            </form>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small" color="primary">
+                                Share
+                            </Button>
+                            <Button size="small" color="primary">
+                                Learn More
+                            </Button>
+                        </CardActions> 
+                    </Card> */}
+                    <form className="login-form" action="javascript:void(0);">
+                        <div className='login-card'>
+                            <h1>Login</h1>
+                            <div className="form-input-material">
+                                <input 
+                                    type="text" 
+                                    name="username" 
+                                    value={username} 
+                                    onChange={(e) => setUsername(e.target.value)} 
+                                    id="username" 
+                                    placeholder=" " 
+                                    autocomplete="off" 
+                                    className="form-control-material" 
+                                    required />
+                                
+                                <label for="username">Username</label>
+                            </div>
+                            <div className="form-input-material">
+                                <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder=" " autocomplete="off" className="form-control-material" required />
+                                <label for="password">Password</label>
+                            </div>
+                            <button onClick={handleSubmit} type="submit" className="btn-login btn-login-primary btn-login-ghost">Login</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        
     )
 }
 
 export default LoginPage;
 
-// import React, { useState } from 'react';
-// import { Redirect } from 'react-router-dom';
-// import Cookies from 'js-cookie';
-// import { useDispatch } from 'react-redux';
-
-// const SET_USER = 'auth/SET_USER'
-
-// const setUser = (user) => {
-//     return {
-//         type: SET_USER,
-//         user
-//     };
-// };
-// function LoginPanel({ updateUser, currentUserId }) {
-//     const [username, setUsername] = useState('demo-lition');
-//     const [password, setPassword] = useState('password');
-//     const dispatch = useDispatch()
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         const res = await fetch('/api/session', {
-//             method: 'put',
-//             headers: {
-//                 "Content-Type": 'application/json',
-//                 "XSRF-TOKEN": Cookies.get('XSRF-TOKEN')
-//             },
-//             body: JSON.stringify({ username, password })
-//         });
-//         res.data = await res.json();
-//         if (res.ok) {
-//             dispatch(setUser(res.data));
-//         }
-//         return res;
-//     };
-
-//     const updateUsername = e => {
-//         setUsername(e.target.value);
-//     };
-
-//     const updatePassword = e => {
-//         setPassword(e.target.value);
-//     };
-
-//     if (currentUserId) {
-//         return <Redirect to="/" />;
-//     }
-//     return (
-//         <main classNameName="centered middled">
-//             <form onSubmit={handleSubmit}>
-//                 <input type="text"
-//                     placeholder="Email"
-//                     value={username}
-//                     onChange={updateUsername} />
-//                 <input type="password"
-//                     placeholder="Password"
-//                     value={password}
-//                     onChange={updatePassword} />
-//                 <button type="submit">Login</button>
-//             </form>
-//         </main>
-//     );
-// }
-// export default LoginPanel;
-
-// const login = (username, password) => {
-//     return async (dispatch) => {
-//         const res = await fetch('/api/session', {
-//             method: 'put',
-//             headers: {
-//                 "Content-Type": 'application/json',
-//                 "XSRF-TOKEN": Cookies.get('XSRF-TOKEN')
-//             },
-//             body: JSON.stringify({ username, password })
-//         });
-//         res.data = await res.json();
-//         if (res.ok) {
-//             dispatch(setUser(res.data));
-//         }
-//         // return res; 
-//     };
-// };
