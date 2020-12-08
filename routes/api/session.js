@@ -34,12 +34,6 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
 }))
 
 router.post('/signup', asyncHandler(async (req, res, next) => {
-    console.log('asdf')
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     console.log(errors);
-    //     return next({ status: 422, errors: errors.array() });
-    // }
 
     const {
         firstName,
@@ -48,7 +42,7 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
         email,
         password
     } = req.body;
-    console.log(firstName, lastName);
+    
     const hashedPassword = await bcrypt.hash(password, 10);
  
     const user = await User.create({
@@ -58,14 +52,13 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
         email,
         hashedPassword
     });
-    console.log(user)
  
     const { jti, token } = generateToken(user);
 
     user.tokenId = jti;
 
     await user.save();
-    console.log(token)
+    
     res.cookie("token", token);
    
     res.json({ token, user: user.toSafeObject() });
