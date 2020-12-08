@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/Signup';
 import UserProfile from './components/UserProfile';
 import ImageUpload from './components/ImageUpload';
+import SinglePhoto from './components/SinglePhoto';
 
 function App(props) {
     const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -45,6 +46,10 @@ function App(props) {
                 <Route path='/home'>
                     <LandingPage />
                 </Route>
+              <Route path='/photos/:photoId'>
+                  <SinglePhoto />
+              </Route>
+
               <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} />
               <PrivateRoute needLogin={props.needLogin} path="/users/:userId" component={UserProfile} />
               <PrivateRoute needLogin={props.needLogin} path="/upload" component={ImageUpload} />
