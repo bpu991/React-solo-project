@@ -25,7 +25,7 @@ export const upload = (formData) => async (dispatch) => {
     }
 }
 
-export const getSinglePhoto = (photoId) => {
+export const getSinglePhoto = (photoId) => async (dispatch) => {
     const res = await fetch(`/api/photos/${photoId}`);
     if (res.ok) {
         const { photo } = await res.json();
