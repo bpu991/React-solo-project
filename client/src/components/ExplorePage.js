@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { explorePage } from '../store/explore';
+import { explorePage } from '../actions/explore_actions';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';

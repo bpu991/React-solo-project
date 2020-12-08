@@ -55,12 +55,12 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => {
-    return {
-        currentUserId: state.auth.id,
-        needLogin: !state.auth.id,
-    };
-}
+// const mapStateToProps = state => {
+//     return {
+//         currentUserId: state.auth.id,
+//         needLogin: !state.auth.id,
+//     };
+// }
 
-
-export default connect(mapStateToProps)(App);
+export default App
+// export default connect(mapStateToProps)(App);

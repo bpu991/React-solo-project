@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../store/auth';
+import { signup } from '../actions/user_actions';
 import { Redirect } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ const SignUpPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const currentUserId = useSelector(state => state.auth.id)
+    const currentUserId = useSelector(state => state.authReducer.id)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {

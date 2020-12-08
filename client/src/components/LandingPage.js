@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import '../landingPage.css';
 import super8 from '../photos/landing-page-mov.mp4';
 const LandingPage = () => {
-    const currentUserId = useSelector(state => state.auth.id)
+    const currentUserId = useSelector(state => state.authReducer.id)
     
     if (currentUserId) return <Redirect to='/explore' />
     

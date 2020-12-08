@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { login } from '../store/auth';
+import { login } from '../actions/user_actions';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import '../css-styles/log-in.css';
@@ -30,7 +30,7 @@ const LoginPage = () => {
     const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const currentUserId = useSelector(state => state.auth.id)
+    const currentUserId = useSelector(state => state.authReducer.id)
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
