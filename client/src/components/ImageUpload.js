@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { upload } from '../store/photos';
+import { upload } from '../actions/photo_actions';
 import { useSelector, useDispatch } from 'react-redux'
 // import dji from './DJI_0005.jpg';
 import '../index.css'
@@ -11,7 +11,7 @@ const config = {
 }
 
 const ImageUpload = () => {
-    const userId = useSelector(state => state.auth.id)
+    const userId = useSelector(state => state.authReducer.id)
     const userPhotos = useSelector(state => state.photoReducer);
     const dispatch = useDispatch();
 
