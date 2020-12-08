@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import '../index.css'
 const config = {
     bucketName: 'img-bucket-shuttr-react-app',
-    // dirName: 'photos', /* optional */
     region: 'us-east-1',
     accessKeyId: process.env.ACCESS_ID,
     secretAccessKey: process.env.SECRET_ID,
 }
 
 const ImageUpload = () => {
-    // const [formDatas, setFormData] = useState('');
     const userId = useSelector(state => state.auth.id)
     const userPhotos = useSelector(state => state.photoReducer);
     const dispatch = useDispatch();
@@ -25,24 +23,6 @@ const ImageUpload = () => {
         dispatch(upload(formData));
     }
 
-    // const upload = async (e) => {
-        
-    //     // const body = {userId, formData};
-    //     console.log(e.target.files[0])
-    //     const csrfToken = Cookies.get("XSRF-TOKEN");
-    //     const res = await fetch('/api/aws/post_file', {
-    //         method: 'POST',
-    //         headers: {
-    //             // 'Content-Type': 'multipart/form-data',
-    //             "CSRF-TOKEN": csrfToken
-    //         },
-    //         body: formData
-    //     });
-    //     if(res.ok) {
-    //         const { photos } = await res.json();
-    //         dispatch(setPhoto(photos))
-    //     }
-    // }
     if(!userPhotos) {
         return null;
     }
