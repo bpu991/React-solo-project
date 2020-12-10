@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Photo, User } = require('../../db/models');
+const { Photo, User, Comment } = require('../../db/models');
 
 const router = express.Router();
 
@@ -16,5 +16,7 @@ router.get('/:photoId', asyncHandler(async function (req, res, next) {
     const photo = await Photo.findByPk(photoId, { include: User });
     res.json({photo})
 }));
+
+
 
 module.exports = router;
