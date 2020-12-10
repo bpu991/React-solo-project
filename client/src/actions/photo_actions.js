@@ -32,3 +32,4 @@ export const getSinglePhoto = (photoId) => async (dispatch) => {
         dispatch(setPhoto({ photo }))
     }
 }
+

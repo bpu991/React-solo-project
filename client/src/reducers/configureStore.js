@@ -1,14 +1,16 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import photoReducer from './photos'
-import authReducer from './auth'
+import photoReducer from './photos';
+import authReducer from './auth';
 import profileReducer from './profile'
 import exploreReducer from './explore';
+import commentReducer from './comments';
 const rootReducer = combineReducers({
     authReducer,
     photoReducer,
     profileReducer,
-    exploreReducer
+    exploreReducer,
+    commentReducer
 });
 
 let storeEnhancer;
