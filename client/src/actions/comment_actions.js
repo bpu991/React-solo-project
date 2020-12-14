@@ -15,12 +15,18 @@ export const getComment = (comments) => {
     };
 };
 
+export const numComment = (comments) => {
+    return {
+        type: commentConstants.NUM_COMMENTS,
+        comments
+    };
+};
+
 export const getComments = (photoId) => async (dispatch) => {
     const res = await fetch(`/api/comments/${photoId}`)
     
     if (res.ok) {
         const comments = await res.json();
-        console.log(comments, '=======!!!!')
         dispatch(getComment(comments));
     }
 }
@@ -34,11 +40,18 @@ export const postComment = (formData) => async (dispatch) => {
         },
         body: JSON.stringify(formData)
     });
-    console.log(res)
-    debugger
     if (res.ok) {
         const comment = await res.json();
         console.log(comment)
         dispatch(setComment(comment))
+    }
+}
+
+export const numComments = (photoId) => async (dispatch) => {
+    const res = await fetch(`/api/comments/amount/${photoId}`)
+    console.log(res)
+    if (res.ok) {
+        const comments = await res.json();
+        dispatch(numComment(comments));
     }
 }

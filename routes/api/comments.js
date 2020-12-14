@@ -26,9 +26,15 @@ router.post('/', asyncHandler(async (req, res, next) => {
 
 router.get('/:photoId', asyncHandler(async(req, res, next) => {
     const { photoId } = req.params;
-    const comments = await Comment.findAll({ where:{ photoId: photoId } });
-    // console.log(comments)
+    const comments = await Comment.findAll({ where: {photoId: photoId}, include: User });
     res.json({ comments });
-}))
+}));
+
+router.get('/amount/:photoId', asyncHandler(async (req, res, next) => {
+    const { photoId } = req.params;
+    const comments = await Comment.findAndCountAll({ where: { photoId: photoId } });
+    const total = comments.count
+    res.json({ total });
+}));
 
 module.exports = router;

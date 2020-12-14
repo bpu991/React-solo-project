@@ -7,6 +7,8 @@ export default function commentReducer(state = {}, action) {
             return action.comments;
         case commentConstants.SET_COMMENTS:
             return action.comments;
+        // case commentConstants.NUM_COMMENTS:
+        //     return action.comments;
         default:
             return state;
     }

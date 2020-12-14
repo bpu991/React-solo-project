@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom';
 import { getSinglePhoto } from '../actions/photo_actions';
-import { postComment, getComments } from '../actions/comment_actions';
+import { postComment, getComments, numComments } from '../actions/comment_actions';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -36,9 +36,8 @@ const SinglePhoto = () => {
     useEffect(() => {
         dispatch(getSinglePhoto(params.photoId))
         dispatch(getComments(params.photoId))
+        dispatch(numComments(params.photoId))
     }, [dispatch])
-
-    console.log('here are comments', comments)
 
     const handleSubmit = (e) => {
         const form = {
@@ -68,7 +67,10 @@ const SinglePhoto = () => {
                                 <h1 onClick={() => history.push(`/users/${user.User.id}`)}>{user.User.username}</h1>
                             </div>
                             {comments && (comments.map(comment => (
-                                <div>{comment.content}</div>
+                                <>
+                                    <h4>{comment.User.username}</h4>
+                                    <div>{comment.content}</div>
+                                </>
                             )))}
                         </div>
                         <div className='single-photo-col-3'>
@@ -76,14 +78,14 @@ const SinglePhoto = () => {
                     </div>
                           
                             
-                            {/* <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <input
                                     type="text"
                                     placeholder="Add a comment..."
                                     value={content}
                                     onChange={e => setContent(e.target.value)} />
                             </form>
-                        {comments && (comments.map(comment => (
+                        {/* {comments && (comments.map(comment => (
                             <div>{comment.content}</div>
                         )))} */}
                         

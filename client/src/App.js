@@ -14,7 +14,6 @@ import ImageUpload from './components/ImageUpload';
 import SinglePhoto from './components/SinglePhoto';
 
 function App(props) {
-    console.log('app.js =======')
     const PrivateRoute = ({ component: Component, ...rest }) => (
         <Route {...rest} render={(props) => (
             rest.needLogin

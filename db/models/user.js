@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING.BINARY,
       validates: {
-        len: [60, 60],
+        len: [2, 2],
       },
     },
     tokenId: {
@@ -46,7 +46,6 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype.toSafeObject = function () {
-    console.log(this)
     const {
       id,
       username,

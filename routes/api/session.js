@@ -44,13 +44,14 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
     } = req.body;
     
     const hashedPassword = await bcrypt.hash(password, 10);
- 
+
     const user = await User.create({
         firstName,
         lastName,
         username: userName,
         email,
         hashedPassword
+    
     });
  
     const { jti, token } = generateToken(user);
