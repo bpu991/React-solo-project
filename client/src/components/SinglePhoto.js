@@ -66,6 +66,13 @@ const SinglePhoto = () => {
                             <div className='col-2-username'>
                                 <h1 onClick={() => history.push(`/users/${user.User.id}`)}>{user.User.username}</h1>
                             </div>
+                            <form onSubmit={handleSubmit}>
+                                <input
+                                    type="text"
+                                    placeholder="Add a comment..."
+                                    value={content}
+                                    onChange={e => setContent(e.target.value)} />
+                            </form>
                             {comments && (comments.map(comment => (
                                 <>
                                     <h4>{comment.User.username}</h4>
@@ -78,13 +85,7 @@ const SinglePhoto = () => {
                     </div>
                           
                             
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    type="text"
-                                    placeholder="Add a comment..."
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)} />
-                            </form>
+                            
                         {/* {comments && (comments.map(comment => (
                             <div>{comment.content}</div>
                         )))} */}

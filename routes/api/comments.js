@@ -26,7 +26,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
 
 router.get('/:photoId', asyncHandler(async(req, res, next) => {
     const { photoId } = req.params;
-    const comments = await Comment.findAll({ where: {photoId: photoId}, include: User });
+    const comments = await Comment.findAll({ where: {photoId: photoId}, include: User, order: [['id', 'DESC']] });
     res.json({ comments });
 }));
 
