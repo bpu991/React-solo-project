@@ -5,12 +5,13 @@ import authReducer from './auth';
 import profileReducer from './profile'
 import exploreReducer from './explore';
 import commentReducer from './comments';
+
 const rootReducer = combineReducers({
     authReducer,
     photoReducer,
     profileReducer,
     exploreReducer,
-    commentReducer
+    commentReducer,
 });
 
 let storeEnhancer;

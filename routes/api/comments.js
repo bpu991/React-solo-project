@@ -18,13 +18,16 @@ router.post('/', asyncHandler(async (req, res, next) => {
         photoId,
         userId
     })
-
+    console.log(comment)
     await comment.save()
+
+    res.json({ comment })
 }));
 
 router.get('/:photoId', asyncHandler(async(req, res, next) => {
     const { photoId } = req.params;
     const comments = await Comment.findAll({ where:{ photoId: photoId } });
+    // console.log(comments)
     res.json({ comments });
 }))
 
