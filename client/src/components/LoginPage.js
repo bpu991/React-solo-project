@@ -53,65 +53,6 @@ const LoginPage = () => {
                     <img src={camera} />
                 </div>
                 <div className='col-2-row-2'>
-                    {/* <Card className={classes.root}>
-                        <CardMedia
-                            className={classes.media}
-                            image={loginPhoto}
-                            title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Login
-                            </Typography>
-                            <form onSubmit={handleSubmit}>
-                                <TextField
-                                    // variant='outlined'
-                                    margin='normal'
-                                    required
-                                    fullWidth
-                                    id='email'
-                                    label='Username'
-                                    name='email'
-                                    autoComplete='username'
-                                    autoFocus
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}></TextField>
-                                <TextField
-                                    // variant='outlined'
-                                    margin='normal'
-                                    required
-                                    fullWidth
-                                    name='password'
-                                    label='Password'
-                                    type='password'
-                                    id='password'
-                                    autoComplete='current-password'
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                                <div className='button-section'>
-                                    <Button
-                                        className={classes.button}
-                                        type='submit'
-                                        fullWidth
-                                        variant='contained'
-                                        color='primary'
-                                        size='large'>
-                                        Sign In
-                                    </Button>
-
-                                </div>
-                            </form>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-                            </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-                            </Button>
-                        </CardActions> 
-                    </Card> */}
                     <form className="login-form" action="javascript:void(0);">
                         <div className='login-card'>
                             <h1>Login</h1>
