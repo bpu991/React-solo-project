@@ -5,6 +5,7 @@ import authReducer from './auth';
 import profileReducer from './profile'
 import exploreReducer from './explore';
 import commentReducer from './comments';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
     authReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     profileReducer,
     exploreReducer,
     commentReducer,
+    searchReducer
 });
 
 let storeEnhancer;

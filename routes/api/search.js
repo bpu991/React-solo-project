@@ -13,7 +13,10 @@ router.get('/:searchInput', asyncHandler(async (req, res, next) =>{
         where: {
             username: {
                 [Op.iLike]: '%' + searchInput + '%'
-            } } });
+            } 
+        }, 
+        limit: 5
+    });
 
     res.json({ results });
 

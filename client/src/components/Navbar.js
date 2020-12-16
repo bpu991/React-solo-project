@@ -9,7 +9,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import profile from '../photos/profile.png';
 import upload from '../photos/upload.png';
 import explore from '../photos/explore.png';
-
+import Search from './Search'
 const useStyles = makeStyles((theme) => ({
     button: {
         fontWeight: "500"
@@ -29,7 +29,7 @@ const Navbar = () => {
 
             </div>
             <div className='navbar-col-3'>
-
+                <Search />
             </div>
             <div className='navbar-col-4'>
 

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { getSinglePhoto } from '../actions/photo_actions';
 import { postComment, getComments, numComments } from '../actions/comment_actions';
 import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 import Navbar from './Navbar';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import right from '../photos/right.png';
+import left from '../photos/left.png';
 import '../css-styles/single-photo.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         width: 900,
         height: 700,
     },
+    button: {
+        fontWeight: "500"
+    }
 }));
 
 const SinglePhoto = () => {
@@ -48,13 +54,24 @@ const SinglePhoto = () => {
         }
         dispatch(postComment(form));
     };
+    function goLeft() {
+        history.push(`/photos/${photo.id - 1}`)
+        window.location.reload(false);
+    }
 
+    function goRight() {
+        history.push(`/photos/${photo.id + 1}`)
+        window.location.reload(false);
+    }
     return (
         <>  
             <Navbar />
             {photo && user && (
                 <div className='single-photo-container'>
                     <div className='photo-container'>
+                        <IconButton onClick={goLeft} className={classes.button} size="Large">
+                            <img className='left' src={left} />
+                        </IconButton>
                         <div className={classes.root}>
                             <GridList cellHeight={700} className={classes.gridList} cols={1}>
                                 <GridListTile key={photo.id} cols={1}>
@@ -62,6 +79,9 @@ const SinglePhoto = () => {
                                 </GridListTile>
                             </GridList>
                         </div>
+                        <IconButton onClick={goRight} className={classes.button} size="Large">
+                            <img className='right' src={right} />
+                        </IconButton>
                     </div>
                     <div className='content-container'>
                         <div className='single-photo-col-2'>
