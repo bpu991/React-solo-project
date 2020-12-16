@@ -59,9 +59,9 @@ const SignUpPage = () => {
                             <div className="form-input-material">
 
                                     <input type="text"
-                                        placeholder="First Name"
-                                        value={firstName}
-                                        onChange={e => setFirstName(e.target.value)}
+                                        placeholder="Username"
+                                        value={userName}
+                                        onChange={e => setUserName(e.target.value)}
                                         className="form-control-material" 
                                         required />
                                     {/* <label>Username</label> */}
