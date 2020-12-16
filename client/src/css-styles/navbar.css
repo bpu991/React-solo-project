@@ -6,7 +6,21 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+.navbar-col-5 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
 .profile-icon {
-    height: 40px;
-    width:40px;
+    height: 35px;
+    /* width:40px; */
+}
+
+.upload-icon {
+    height: 45px;
+}
+
+.explore-icon {
+    height: 37px;
 }

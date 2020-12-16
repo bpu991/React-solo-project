@@ -6,7 +6,10 @@ import Button from "@material-ui/core/Button";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import film from '../photos/film-icon.png';
+import profile from '../photos/profile.png';
+import upload from '../photos/upload.png';
+import explore from '../photos/explore.png';
+
 const useStyles = makeStyles((theme) => ({
     button: {
         fontWeight: "500"
@@ -32,8 +35,16 @@ const Navbar = () => {
 
             </div>
             <div className='navbar-col-5'>
+                <IconButton component={NavLink} to={`/explore`} className={classes.button} size="Large">
+                    <img className='explore-icon' src={explore} />
+                </IconButton>
+                
+                <IconButton component={NavLink} to={`/upload`} className={classes.button} size="Large">
+                    <img className='upload-icon' src={upload} />
+                </IconButton>
+
                 <IconButton component={NavLink} to={`/users/${user.id}`} className={classes.button} size="Large">
-                    <img className='profile-icon' src={film} />
+                    <img className='profile-icon' src={profile} />
                 </IconButton>
                 {/* <IconButton component={NavLink} to={`/users/${user.id}`} className={classes.button} size="Large">
                     <LocationCityIcon size="Large" />
