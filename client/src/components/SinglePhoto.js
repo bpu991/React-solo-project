@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { getSinglePhoto } from '../actions/photo_actions';
 import { postComment, getComments, numComments } from '../actions/comment_actions';
 import { makeStyles } from '@material-ui/core/styles';
+import Navbar from './Navbar';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import '../css-styles/single-photo.css';
@@ -49,7 +50,8 @@ const SinglePhoto = () => {
     };
 
     return (
-        <>
+        <>  
+            <Navbar />
             {photo && user && (
                 <div className='single-photo-container'>
                     <div className='photo-container'>

@@ -12,7 +12,7 @@ import SignUpPage from './components/Signup';
 import UserProfile from './components/UserProfile';
 import ImageUpload from './components/ImageUpload';
 import SinglePhoto from './components/SinglePhoto';
-
+import Navbar from './components/Navbar';
 function App(props) {
     const PrivateRoute = ({ component: Component, ...rest }) => (
         <Route {...rest} render={(props) => (
@@ -41,19 +41,25 @@ function App(props) {
                 </Route>
 
                   <Route path='/signup'>
+
                       <SignUpPage />
                   </Route>
-                <Route path='/home'>
-                    <LandingPage />
-                </Route>
+                
               <Route path='/photos/:photoId'>
+                  
                   <SinglePhoto />
               </Route>
-
-              <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} />
+              <Route path='/explore'>
+                
+                  <ExplorePage />
+              </Route>
+              {/* <PrivateRoute needLogin={props.needLogin} path="/explore" component={ExplorePage} /> */}
               <PrivateRoute needLogin={props.needLogin} path="/users/:userId" component={UserProfile} />
               <PrivateRoute needLogin={props.needLogin} path="/upload" component={ImageUpload} />
-                    
+              <Route path='/'>
+
+                    <LandingPage />
+                </Route>      
                 
             </Switch>
     </BrowserRouter>

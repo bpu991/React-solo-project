@@ -1,0 +1,12 @@
+.navbar-container {
+    height: 70px;
+    width: 100%;
+    background-color: #A9BCD0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.profile-icon {
+    height: 40px;
+    width:40px;
+}
