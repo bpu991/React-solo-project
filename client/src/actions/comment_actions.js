@@ -42,7 +42,6 @@ export const postComment = (formData) => async (dispatch) => {
     });
     if (res.ok) {
         const comment = await res.json();
-        console.log(comment)
         dispatch(setComment(comment))
     }
 }

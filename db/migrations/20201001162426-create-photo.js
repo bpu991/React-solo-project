@@ -12,6 +12,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      likes: {
+        allowNull: false,
+        defaultValue: 0,
+        type: Sequelize.INTEGER
+      },
+      caption: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER

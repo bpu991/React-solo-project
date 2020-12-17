@@ -33,13 +33,14 @@ router.post('/post_file', upload.single('demo_file'), asyncHandler(async (req, r
     //Multer middleware adds file(in case of single file ) or files(multiple files) object to the request object.
     //req.file is the demo_file
     // console.log('This is the ', req.body)
-    const { userId } = req.body;
+    const { userId, caption } = req.body;
     // console.log('this is the userId: ', userId);
     uploadFile(req.file.path, req.file.filename, res);
     // console.log(`https://img-bucket-shuttr-react-app.s3.amazonaws.com/images/${req.file.filename}`)
     const photo = await Photo.create({ 
         url: `https://img-bucket-shuttr-react-app.s3.amazonaws.com/images/${req.file.filename}`,
-        userId
+        userId,
+        caption
     })
     // await photo.save()
     const photos = await Photo.findAll({where: {userId: userId}});

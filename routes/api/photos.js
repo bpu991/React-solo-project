@@ -17,6 +17,16 @@ router.get('/:photoId', asyncHandler(async function (req, res, next) {
     res.json({photo})
 }));
 
+router.post('/likes/:photoId', asyncHandler(async function (req, res, next) {
+    const { photoId } = req.params;
+
+    const photo = await Photo.findByPk( photoId );
+
+    photo.likes++;
+    
+    await photo.save();
+}));
+
 
 
 module.exports = router;
