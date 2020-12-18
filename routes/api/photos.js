@@ -17,13 +17,23 @@ router.get('/:photoId', asyncHandler(async function (req, res, next) {
     res.json({photo})
 }));
 
-router.post('/likes/:photoId', asyncHandler(async function (req, res, next) {
+router.post('/like/:photoId', asyncHandler(async function (req, res, next) {
     const { photoId } = req.params;
 
     const photo = await Photo.findByPk( photoId );
 
     photo.likes++;
     
+    await photo.save();
+}));
+
+router.post('/unlike/:photoId', asyncHandler(async function (req, res, next) {
+    const { photoId } = req.params;
+
+    const photo = await Photo.findByPk(photoId);
+
+    photo.likes--;
+
     await photo.save();
 }));
 

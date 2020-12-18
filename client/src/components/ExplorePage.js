@@ -5,6 +5,7 @@ import { explorePage } from '../actions/explore_actions';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import Navbar from './Navbar';
 // import tileData from './tileData';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,17 +47,20 @@ const ExplorePage = () => {
     //     </main>
     // )
     return (
-        <div className={classes.root}>
-            <GridList cellHeight={320} className={classes.gridList} cols={5}>
-                {explore.photos.map((photo) => (
-                    
-                    <GridListTile key={photo.id} cols={1}>
-    
-                        <img onClick={() => history.push(`/photos/${photo.id}`)} src={photo.url} alt={photo.id}/>
-                    </GridListTile>
-                ))}
-            </GridList>
-        </div>
+        <>  
+            <Navbar />
+            <div className={classes.root}>
+                <GridList cellHeight={320} className={classes.gridList} cols={5}>
+                    {explore.photos.map((photo) => (
+                        
+                        <GridListTile key={photo.id} cols={1}>
+        
+                            <img onClick={() => history.push(`/photos/${photo.id}`)} src={photo.url} alt={photo.id}/>
+                        </GridListTile>
+                    ))}
+                </GridList>
+            </div>
+        </>
     );
 }
 

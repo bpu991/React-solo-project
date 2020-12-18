@@ -33,3 +33,33 @@ export const getSinglePhoto = (photoId) => async (dispatch) => {
     }
 }
 
+export const likePost = (photoId) => async (dispatch) => {
+    const res = await fetch(`/api/photos/like/${photoId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({photoId})
+    });
+
+    if (res.ok) {
+        const like = await res.json();
+        dispatch(setPhoto(like))
+    }
+}
+
+export const unlikePost = (photoId) => async (dispatch) => {
+    const res = await fetch(`/api/photos/unlike/${photoId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ photoId })
+    });
+
+    if (res.ok) {
+        const like = await res.json();
+        dispatch(setPhoto(like))
+    }
+}
+

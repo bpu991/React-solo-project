@@ -32,7 +32,7 @@ export const getComments = (photoId) => async (dispatch) => {
 }
 
 export const postComment = (formData) => async (dispatch) => {
-    console.log('test');
+
     const res = await fetch(`/api/comments`, {
         method: "POST",
         headers: {

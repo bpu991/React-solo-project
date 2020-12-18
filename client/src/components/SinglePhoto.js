@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory, NavLink } from 'react-router-dom';
-import { getSinglePhoto } from '../actions/photo_actions';
+import { getSinglePhoto, likePost, unlikePost} from '../actions/photo_actions';
 import { postComment, getComments, numComments } from '../actions/comment_actions';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +10,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import right from '../photos/right.png';
 import left from '../photos/left.png';
+import unlike from '../photos/unlike.png';
+import like from '../photos/like.png';
 import '../css-styles/single-photo.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +38,7 @@ const SinglePhoto = () => {
     const comments = useSelector(state => state.commentReducer.comments)
     const currentUser = useSelector(state => state.authReducer)
     const [content, setContent] = useState("");
+    const [liked, setLiked] = useState(false)
     const params = useParams();
     const dispatch = useDispatch()
     const history = useHistory()
@@ -54,6 +57,17 @@ const SinglePhoto = () => {
         }
         dispatch(postComment(form));
     };
+
+    const handleLike = (e) => {
+        setLiked(true)
+        dispatch(likePost(photo.id))
+    }
+
+    const handleUnlike = (e) => {
+        setLiked(false)
+        dispatch(unlikePost(photo.id))
+    }
+
     function goLeft() {
         history.push(`/photos/${photo.id - 1}`)
         window.location.reload(false);
@@ -87,6 +101,16 @@ const SinglePhoto = () => {
                         <div className='single-photo-col-2'>
                             <div className='col-2-username'>
                                 <h1 onClick={() => history.push(`/users/${user.User.id}`)}>{user.User.username}</h1>
+                                {/* {liked ? ( 
+                                    <img src={like} onClick={() => setLiked(false)}/>
+                                ) : (
+                                    <img src={unlike} onClick={() => setLiked(true)} />
+                                )} */}
+                                {liked ? (
+                                    <img src={like} onClick={handleUnlike} />
+                                ) : (
+                                        <img src={unlike} onClick={handleLike} />
+                                    )}
                                 <h3>Likes: {photo.likes}</h3>
                             </div>
                             <form onSubmit={handleSubmit}>
