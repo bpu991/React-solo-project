@@ -1,16 +1,4 @@
-/* /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
-body {
-font-family: 'Open Sans', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; */
-  /* background: #eceffc;
-  background-image: url('./photos/umbrella.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
-/* } */
+
 .signup-page-container {
   width: 100%;
   min-height: 100vh;
@@ -73,19 +61,41 @@ grid-template-rows: 1fr 1fr 1fr;
   
 
 .form-input-material {
-  --input-default-border-color: white;
-  --input-border-bottom-color: white;
+  display: flex;
+  justify-content: center;
   
 
+}
+
+.form-control-material {
+  /* padding: 5px;
+     font-size: 15px;
+     border-width: 1px;
+     border-color: #CCCCCC;
+     background-color: #FFFFFF;
+     color: #000000;
+     border-style: solid;
+     border-radius: 14px;
+     box-shadow: 0px 0px 5px rgba(66,66,66,.75); */
+     /* text-shadow: 0px 0px 5px rgba(66,66,66,.75);  */
+    border: 1px solid #848484; 
+    -webkit-border-radius: 30px; 
+    -moz-border-radius: 30px; 
+    border-radius: 30px; 
+    outline:0; 
+    height:25px; 
+    max-width: 350px;
+    padding-left:10px; 
+    padding-right:10px; 
 }
 
 
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 25%;
+  width: 20%;
   padding: 50px 40px;
   color: white;
   background: rgba(0, 0, 0, 0.8);

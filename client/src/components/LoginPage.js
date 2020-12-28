@@ -68,11 +68,11 @@ const LoginPage = () => {
                                     className="form-control-material" 
                                     required />
                                 
-                                <label for="username">Username</label>
+                                
                             </div>
                             <div className="form-input-material">
                                 <input className='signup-input' type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder=" " autocomplete="off" className="form-control-material" required />
-                                <label for="password">Password</label>
+                                
                             </div>
                             <button onClick={handleSubmit} type="submit" className="btn-login btn-login-primary btn-login-ghost">Login</button>
                         </div>
