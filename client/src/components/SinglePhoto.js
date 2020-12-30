@@ -139,17 +139,13 @@ const SinglePhoto = () => {
                         <div className='single-photo-col-2'>
                             <div className='col-2-username'>
                                 <h1 onClick={() => history.push(`/users/${user.User.id}`)}>{user.User.username}</h1>
-                                {/* {liked ? ( 
-                                    <img src={like} onClick={() => setLiked(false)}/>
-                                ) : (
-                                    <img src={unlike} onClick={() => setLiked(true)} />
-                                )} */}
-                                {liked ? (
+                                    <h3>{photo.caption}</h3>
+                                {/* {liked ? (
                                     <img src={like} onClick={handleUnlike} />
                                 ) : (
                                         <img src={unlike} onClick={handleLike} />
                                     )}
-                                <h3>Likes: {photo.likes}</h3>
+                                <h3>Likes: {photo.likes}</h3> */}
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <input

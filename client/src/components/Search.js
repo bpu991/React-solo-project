@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Link from '@material-ui/core/Link';
 import searchUsers from "../actions/search_actions";
+import '../css-styles/search.css'
 // import { getAllLandlords } from "../actions/landlord_actions";
 
 const useStyles = makeStyles((theme) => ({
